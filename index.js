@@ -1,4 +1,3 @@
-
 let chars = document.querySelectorAll(".drum");
 let songs = ["crash.mp3", "kick-bass.mp3", "snare.mp3", "tom-1.mp3", "tom-2.mp3","tom-3.mp3", "tom-4.mp3"];
 
@@ -6,15 +5,17 @@ for(let i = 0 ; i < chars.length ; i++){
     chars[i].addEventListener("click", function () {
         let innerHTML = this.innerHTML;
         songForKeyBoard(innerHTML);
+        buttonAnimation(innerHTML)
     }); 
 
 }
 
 document.addEventListener('keydown', function(event){
     songForKeyBoard(event.key);
+    buttonAnimation(event.key);
 });
 
-function songForKeyBoard(key){
+function songForKeyBoard(key){ 
         let song;
         switch(key) {
             case "w":
@@ -47,4 +48,10 @@ function songForKeyBoard(key){
         
 };
 
-
+function buttonAnimation(key){
+    let button = document.querySelector("."+key);
+    button.classList.add("pressed");
+    setTimeout(function(){
+        button.classList.remove("pressed")
+    }, 100)
+}
